@@ -32,7 +32,7 @@ model User {
   password String
   comments Comment[]
   posts    Post[]
-  role     Role
+  role     Role      @default(USER)
 }
 
 model Comment {

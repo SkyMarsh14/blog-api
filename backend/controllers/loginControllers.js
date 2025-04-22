@@ -1,8 +1,11 @@
-import validator from "../lib/validator";
+import validator from "../lib/validator.js";
 import { validationResult } from "express-validator";
+import prisma from "../db/prisma.js";
 const loginController = {
   sign_up_get: async (req, res) => {
-    res.json();
+    res.json({
+      message: "This is a sign-up page.",
+    });
   },
   sign_in_get: async (req, res) => {
     res.json({
@@ -14,11 +17,18 @@ const loginController = {
     async (req, res) => {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        res.status(400).json({
-          errors: errors,
+        return res.status(400).json({
+          errors: errors.array(),
         });
       }
       const { username, password } = req.body;
+      const user = await prisma.user.create({
+        data: {
+          username: username,
+          password: password,
+        },
+      });
+      res.json(user);
     },
   ],
 };

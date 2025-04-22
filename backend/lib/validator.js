@@ -1,5 +1,5 @@
 import { body } from "express-validator";
-import prisma from "../db/prisma";
+import prisma from "../db/prisma.js";
 const validator = {
   user: [
     body("username")
@@ -9,7 +9,7 @@ const validator = {
       .isLength({ min: 3, max: 20 })
       .withMessage("Username must be between 3 to 20 characters.")
       .custom(async (username) => {
-        const user = await prisma.user.findUnique({
+        const user = await prisma.user.findFirst({
           where: {
             username: username,
           },
