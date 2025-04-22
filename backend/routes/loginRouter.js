@@ -2,8 +2,8 @@ import { Router } from "express";
 import loginController from "../controllers/loginControllers.js";
 
 const loginRouter = Router();
-loginRouter.get("/sign-up", loginController.sign_up_get);
+loginRouter.get("/sign-up", loginController.sign_up);
 loginRouter.post("/sign-up", loginController.create_user);
-loginRouter.get("/", loginController.sign_in_get);
-
+loginRouter.get("/", loginController.sign_in);
+loginRouter.post("/", loginController.validate_login);
 export default loginRouter;

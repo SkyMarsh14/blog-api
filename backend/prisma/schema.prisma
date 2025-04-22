@@ -28,11 +28,13 @@ model Post {
 
 model User {
   id       Int       @id @default(autoincrement())
-  username String
+  username String    @unique
   password String
   comments Comment[]
   posts    Post[]
   role     Role      @default(USER)
+
+  @@unique([username, password])
 }
 
 model Comment {
