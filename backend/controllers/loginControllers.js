@@ -2,6 +2,7 @@ import validator from "../lib/validator.js";
 import { validationResult } from "express-validator";
 import prisma from "../db/prisma.js";
 import { hashPassword, match } from "../lib/hashPassword.js";
+import jwt from "jsonwebtoken";
 const loginController = {
   sign_up: async (req, res) => {
     res.json({
@@ -11,7 +12,6 @@ const loginController = {
   sign_in: async (req, res) => {
     res.json({
       message: "Welcome to Sign in page.",
-      user,
     });
   },
   validate_login: async (req, res) => {
@@ -31,8 +31,10 @@ const loginController = {
         message: "Incorrect password.",
       });
     }
+    const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
     res.json({
       message: "Welcome " + user.username,
+      token,
     });
   },
   create_user: [
