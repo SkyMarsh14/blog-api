@@ -1,7 +1,7 @@
 const postContoller = {
   allPosts: async (req, res) => {
     //Get posts from db.
-    res.json();
+    res.json({ message: "Welcome to posts route" });
   },
 };
 

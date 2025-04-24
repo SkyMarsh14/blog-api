@@ -10,10 +10,14 @@ const opts = {
 passport.use(
   new Strategy(opts, async (payload, done) => {
     try {
-      const user = await prisma.findUnique(payload.id);
-      if (user) return done(null, user);
+      const user = await prisma.user.findUnique({
+        where: {
+          id: payload.id,
+        },
+      });
+      return user ? done(null, user) : done(null, false);
     } catch (error) {
-      return done(error);
+      return done(error, false);
     }
   })
 );
