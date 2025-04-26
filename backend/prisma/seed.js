@@ -1,18 +1,28 @@
 // prisma/seed.ts
 import { PrismaClient, Role } from "../generated/prisma/default.js";
-
+import { hashPassword } from "../lib/hashPassword.js";
 const prisma = new PrismaClient();
 
 async function main() {
   console.log("Starts seeding...");
   // Create Users
+  const passwords = [
+    "securepassword",
+    "anotherpass",
+    "pass123",
+    "qwerty",
+    "letmein",
+  ];
+  const hashedPasswords = await Promise.all(
+    passwords.map((pw) => hashPassword(pw))
+  );
   const users = await prisma.user.createMany({
     data: [
-      { username: "johndoe", password: "securepassword", role: Role.AUTHOR },
-      { username: "janedoe", password: "anotherpass", role: Role.USER },
-      { username: "alice", password: "pass123", role: Role.AUTHOR },
-      { username: "bob", password: "qwerty", role: Role.USER },
-      { username: "charlie", password: "letmein", role: Role.USER },
+      { username: "johndoe", password: hashedPasswords[0], role: Role.AUTHOR },
+      { username: "janedoe", password: hashedPasswords[1], role: Role.USER },
+      { username: "alice", password: hashedPasswords[2], role: Role.AUTHOR },
+      { username: "bob", password: hashedPasswords[3], role: Role.USER },
+      { username: "charlie", password: hashedPasswords[4], role: Role.USER },
     ],
   });
 

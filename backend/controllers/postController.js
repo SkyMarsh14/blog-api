@@ -5,7 +5,7 @@ const postContoller = {
     res.json({ message: "Welcome to posts route", posts });
   },
   get_post: async (req, res) => {
-    const postId = req.params.postId;
+    const postId = Number(req.params.postId);
     const post = await prisma.post.findUnique({
       where: {
         id: postId,
