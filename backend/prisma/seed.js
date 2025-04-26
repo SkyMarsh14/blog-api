@@ -1,5 +1,5 @@
 // prisma/seed.ts
-import { PrismaClient, Role } from "../generated/prisma";
+import { PrismaClient, Role } from "../generated/prisma/default.js";
 
 const prisma = new PrismaClient();
 
