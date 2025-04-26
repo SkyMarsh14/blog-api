@@ -1,0 +1,10 @@
+import { Router } from "express";
+import commentController from "../controllers/commentController";
+const commentRouter = Router();
+commentRouter.get("/", commentController.index);
+commentRouter.delete("/", commentController.delete_by_postId);
+commentRouter.post("/", commentController.post);
+commentRouter.get("/:commentId", commentController.get);
+commentRouter.delete("/:commentId", commentController.delete);
+commentRouter.put("/:commentId", commentController.update);
+export default commentRouter;
