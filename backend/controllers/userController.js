@@ -37,5 +37,13 @@ const userController = {
     });
     return res.json({ user });
   },
+  delete: async (req, res) => {
+    const deletedUser = await prisma.user.delete({
+      where: {
+        id: req.params.userId,
+      },
+    });
+    return res.json({ user: deletedUser });
+  },
 };
 export default userController;

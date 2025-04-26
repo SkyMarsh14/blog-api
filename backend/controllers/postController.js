@@ -34,6 +34,7 @@ const postContoller = {
       const post = await prisma.post.update({
         where: {
           id: req.params.postId,
+          authorId: req.user.id,
         },
         data: {
           title,
@@ -50,6 +51,7 @@ const postContoller = {
       const deletedPost = await prisma.post.delete({
         where: {
           id: req.params.postId,
+          authorId: req.user.id,
         },
       });
       return res.json({ deletedPost });

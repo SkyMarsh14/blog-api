@@ -1,5 +1,5 @@
 import { Router } from "express";
-import commentController from "../controllers/commentController";
+import commentController from "../controllers/commentController.js";
 const commentRouter = Router();
 commentRouter.get("/", commentController.index);
 commentRouter.delete("/", commentController.delete_by_postId);
