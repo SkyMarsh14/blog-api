@@ -10,9 +10,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.get("/", (req, res) => res.send("Welcome!"));
+app.use("/", loginRouter);
 app.use("/posts", passport.authenticate("jwt", { session: false }), postRouter);
-app.use("/login", loginRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

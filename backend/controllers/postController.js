@@ -33,7 +33,7 @@ const postContoller = {
     try {
       const post = await prisma.post.update({
         where: {
-          id: req.params.postId,
+          id: parseInt(req.params.postId, 10),
           authorId: req.user.id,
         },
         data: {
@@ -50,7 +50,7 @@ const postContoller = {
     try {
       const deletedPost = await prisma.post.delete({
         where: {
-          id: req.params.postId,
+          id: parseInt(req.params.postId, 10),
           authorId: req.user.id,
         },
       });

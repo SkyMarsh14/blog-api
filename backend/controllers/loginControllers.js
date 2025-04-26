@@ -31,7 +31,11 @@ const loginController = {
         message: "Incorrect password.",
       });
     }
-    const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
+    const token = jwt.sign(
+      { id: user.id, role: user.role, username: user.username },
+      process.env.ACCESS_TOKEN_SECRET,
+      { expiresIn: "1h" }
+    );
     res.json({
       message: "Welcome " + user.username,
       token,

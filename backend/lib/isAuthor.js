@@ -1,7 +1,7 @@
 const isAuthor = (req, res, next) => {
   try {
     if (req.user.role === "AUTHOR") {
-      next();
+      return next();
     }
     res.status(403).json({
       message: "Only authors can perform this action",
