@@ -1,14 +1,11 @@
 import prisma from "../db/prisma.js";
 const commentController = {
   index: async (req, res) => {
-    const postId = req.params.postId;
+    const postId = parseInt(req.params.postId, 10);
     try {
-      const comments = await prisma.post.findUnique({
+      const comments = await prisma.comment.findMany({
         where: {
-          id: postId,
-        },
-        include: {
-          authorId: true,
+          postId,
         },
       });
       return res.json({ comments });
@@ -19,10 +16,12 @@ const commentController = {
   post: async (req, res) => {
     const content = req.body.content;
     const authorId = req.user.id;
+    const postId = parseInt(req.params.postId, 10);
     const comment = await prisma.comment.create({
       data: {
         content,
         authorId,
+        postId,
       },
     });
     return res.json({ comment });
@@ -30,17 +29,17 @@ const commentController = {
   delete_by_postId: async (req, res) => {
     const deletedComments = await prisma.comment.deleteMany({
       where: {
-        postId: req.params.postId,
+        postId: parseInt(req.params.postId, 10),
       },
     });
     return res.json({ deletedComments });
   },
   get: async (req, res) => {
-    const { postId, commentId } = req.params;
+    const { commentId } = req.params;
     try {
       const comment = await prisma.comment.findUnique({
         where: {
-          id: commentId,
+          id: parseInt(commentId, 10),
         },
       });
       return res.json({ comment });
@@ -48,11 +47,10 @@ const commentController = {
       throw new Error(err);
     }
   },
-  post: async (req, res) => {},
   delete: async (req, res) => {
     const deleted = await prisma.comment.delete({
       where: {
-        id: req.params.commentId,
+        id: parseInt(req.params.commentId, 10),
       },
     });
     return res.json(deleted);
@@ -61,7 +59,7 @@ const commentController = {
     const { content } = req.body;
     const comment = await prisma.comment.update({
       where: {
-        id: req.params.commentId,
+        id: parseInt(req.params.commentId, 10),
       },
       data: {
         content,

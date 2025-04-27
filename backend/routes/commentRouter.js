@@ -1,6 +1,6 @@
 import { Router } from "express";
 import commentController from "../controllers/commentController.js";
-const commentRouter = Router();
+const commentRouter = Router({ mergeParams: true });
 commentRouter.get("/", commentController.index);
 commentRouter.delete("/", commentController.delete_by_postId);
 commentRouter.post("/", commentController.post);

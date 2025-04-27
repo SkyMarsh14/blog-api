@@ -23,7 +23,7 @@ model Post {
   Comment   Comment[]
   author    User      @relation(fields: [authorId], references: [id])
   authorId  Int
-  published Boolean
+  published Boolean   @default(false)
 }
 
 model User {
