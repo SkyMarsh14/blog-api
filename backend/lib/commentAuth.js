@@ -1,5 +1,6 @@
 import prisma from "../db/prisma.js";
-const isCommentAuthor = async (req, res, next) => {
+const commentAuth = async (req, res, next) => {
+  if (req.user.role === "ADMIN") return next();
   const commentId = parseInt(req.params.commentId);
   const comment = await prisma.comment.findUnique({
     where: {
@@ -16,4 +17,4 @@ const isCommentAuthor = async (req, res, next) => {
   }
   throw new Error("Only author of this comment can perfrom this action");
 };
-export default isCommentAuthor;
+export default commentAuth;

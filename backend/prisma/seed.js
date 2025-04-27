@@ -18,9 +18,9 @@ async function main() {
   );
   const users = await prisma.user.createMany({
     data: [
-      { username: "johndoe", password: hashedPasswords[0], role: Role.AUTHOR },
+      { username: "johndoe", password: hashedPasswords[0], role: Role.ADMIN },
       { username: "janedoe", password: hashedPasswords[1], role: Role.USER },
-      { username: "alice", password: hashedPasswords[2], role: Role.AUTHOR },
+      { username: "alice", password: hashedPasswords[2], role: Role.ADMIN },
       { username: "bob", password: hashedPasswords[3], role: Role.USER },
       { username: "charlie", password: hashedPasswords[4], role: Role.USER },
     ],

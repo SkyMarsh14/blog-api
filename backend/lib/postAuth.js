@@ -1,5 +1,6 @@
 import prisma from "../db/prisma.js";
-const isPostAuthor = async (req, res, next) => {
+const postAuth = async (req, res, next) => {
+  if (req.user.role === "ADMIN") return next();
   const postId = parseInt(req.params.postId, 10);
   const post = await prisma.post.findUnique({
     where: {
@@ -13,4 +14,4 @@ const isPostAuthor = async (req, res, next) => {
   }
 };
 
-export default isPostAuthor;
+export default postAuth;

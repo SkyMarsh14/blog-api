@@ -51,7 +51,6 @@ const postContoller = {
       const deletedPost = await prisma.post.delete({
         where: {
           id: parseInt(req.params.postId, 10),
-          authorId: req.user.id,
         },
       });
       return res.json({ deletedPost });
