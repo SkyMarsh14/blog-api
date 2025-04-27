@@ -1,10 +1,10 @@
 import { Router } from "express";
 import userController from "../controllers/userController.js";
+import isUser from "../lib/isUser.js";
 const userRouter = Router();
 
 userRouter.get("/", userController.index);
 userRouter.get("/:userId", userController.get);
-userRouter.put("/:userId", userController.update);
-userRouter.put("/:userId/role", userController.update_role);
-userRouter.delete("/:userId", userController.delete);
+userRouter.put("/:userId", isUser, userController.update);
+userRouter.put("/:userId/role", isUser, userController.update_role);
 export default userRouter;
