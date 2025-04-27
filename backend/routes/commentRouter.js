@@ -1,9 +1,10 @@
 import { Router } from "express";
 import commentAuth from "../lib/commentAuth.js";
 import commentController from "../controllers/commentController.js";
+import isAdmin from "../lib/isAdmin.js";
 const commentRouter = Router({ mergeParams: true });
 commentRouter.get("/", commentController.index);
-commentRouter.delete("/", commentController.delete_by_postId);
+commentRouter.delete("/", isAdmin, commentController.delete_by_postId);
 commentRouter.post("/", commentController.post);
 commentRouter.get("/:commentId", commentController.get);
 commentRouter.delete("/:commentId", commentAuth, commentController.delete);

@@ -3,6 +3,7 @@ import { validationResult } from "express-validator";
 import prisma from "../db/prisma.js";
 import { hashPassword, match } from "../lib/hashPassword.js";
 import jwt from "jsonwebtoken";
+import { Role } from "../generated/prisma/index.js";
 const loginController = {
   sign_up: async (req, res) => {
     res.json({
@@ -50,8 +51,19 @@ const loginController = {
           errors: errors.array(),
         });
       }
-      const { username, password } = req.body;
+      const { username, password, adminPassword } = req.body;
       const hashedPassword = await hashPassword(password);
+      if (adminPassword && adminPassword === process.env.ADMIN_PASSWORD) {
+        const user = await prisma.user.create({
+          data: {
+            username,
+            password: hashedPassword,
+            role: Role.ADMIN,
+          },
+        });
+        return res.json(user);
+      }
+
       const user = await prisma.user.create({
         data: {
           username: username,

@@ -47,10 +47,16 @@ const postContoller = {
     }
   },
   delete: async (req, res) => {
+    const postId = parseInt(req.params.postId, 10);
     try {
+      const deleteComments = await prisma.comment.deleteMany({
+        where: {
+          postId,
+        },
+      });
       const deletedPost = await prisma.post.delete({
         where: {
-          id: parseInt(req.params.postId, 10),
+          id: postId,
         },
       });
       return res.json({ deletedPost });
