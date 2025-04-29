@@ -5,16 +5,6 @@ import { hashPassword, match } from "../lib/hashPassword.js";
 import jwt from "jsonwebtoken";
 import { Role } from "../generated/prisma/index.js";
 const loginController = {
-  sign_up: async (req, res) => {
-    res.json({
-      message: "This is a sign-up page.",
-    });
-  },
-  sign_in: async (req, res) => {
-    res.json({
-      message: "Welcome to Sign in page.",
-    });
-  },
   validate_login: async (req, res) => {
     const { username, password } = req.body;
     const user = await prisma.user.findUnique({
@@ -38,7 +28,6 @@ const loginController = {
       { expiresIn: "1h" }
     );
     res.json({
-      message: "Welcome " + user.username,
       token,
     });
   },

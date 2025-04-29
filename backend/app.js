@@ -14,7 +14,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/", loginRouter);
 app.use("/user", passport.authenticate("jwt", { session: false }), userRouter);
 app.use("/posts", passport.authenticate("jwt", { session: false }), postRouter);
-
+app.use("*", (req, res) => {
+  throw new Error("Route does not exist");
+});
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server started at ${PORT}`);
