@@ -4,6 +4,7 @@ const useFetch = (url) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(null);
+  const [needsAuth, setNeedsAuth] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -11,6 +12,10 @@ const useFetch = (url) => {
         setLoading(true);
         const response = await fetch(url, { mode: "cors" });
         if (!response.ok) {
+          if (response.status === 401) {
+            setNeedsAuth(true);
+            return;
+          }
           throw new Error(`Response status: ${response.status}`);
         }
         const data = await response.json();
@@ -23,7 +28,7 @@ const useFetch = (url) => {
     };
     fetchData();
   }, []);
-  return { data, error, loading };
+  return { data, error, loading, needsAuth };
 };
 
 export default useFetch;
