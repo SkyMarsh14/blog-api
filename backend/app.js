@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/", loginRouter);
 app.use("/user", passport.authenticate("jwt", { session: false }), userRouter);
-app.use("/posts", passport.authenticate("jwt", { session: false }), postRouter);
+app.use("/posts", postRouter);
 app.use("/{*any}", (req, res) => {
   res.status(404).json({
     error: "Resource not found",
