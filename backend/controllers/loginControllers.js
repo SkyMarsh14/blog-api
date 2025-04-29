@@ -42,15 +42,19 @@ const loginController = {
       }
       const { username, password, adminPassword } = req.body;
       const hashedPassword = await hashPassword(password);
-      if (adminPassword && adminPassword === process.env.ADMIN_PASSWORD) {
-        const user = await prisma.user.create({
-          data: {
-            username,
-            password: hashedPassword,
-            role: Role.ADMIN,
-          },
-        });
-        return res.json(user);
+      if (adminPassword) {
+        if (adminPassword === process.env.ADMIN_PASSWORD) {
+          const user = await prisma.user.create({
+            data: {
+              username,
+              password: hashedPassword,
+              role: Role.ADMIN,
+            },
+          });
+          return res.json(user);
+        }
+      } else {
+        return res.json({ message: "Incorrect password." });
       }
 
       const user = await prisma.user.create({
