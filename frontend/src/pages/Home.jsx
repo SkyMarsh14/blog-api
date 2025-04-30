@@ -17,11 +17,11 @@ const Home = () => {
           <div>
             {data.posts.map((post) => {
               return (
-                <>
+                <div key={crypto.randomUUID()}>
                   <div>{post.title}</div>
                   <div>{post.content}</div>
                   <div>{post.created_at}</div>
-                </>
+                </div>
               );
             })}
           </div>
