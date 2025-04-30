@@ -16,12 +16,13 @@ const Home = () => {
         data && (
           <div>
             {data.posts.map((post) => {
-              return;
-              <>
-                <div>{post.title}</div>
-                <div>{post.content}</div>
-                <div>{post.created_at}</div>
-              </>;
+              return (
+                <>
+                  <div>{post.title}</div>
+                  <div>{post.content}</div>
+                  <div>{post.created_at}</div>
+                </>
+              );
             })}
           </div>
         )
