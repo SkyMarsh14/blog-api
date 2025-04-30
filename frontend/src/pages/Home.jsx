@@ -10,7 +10,22 @@ const Home = () => {
         <p>Create a unique and beautiful blog easily.</p>
         <LoginDiv />
       </div>
-      {loading ? <div>Loading...</div> : data && <div>{data}</div>}
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        data && (
+          <div>
+            {data.posts.map((post) => {
+              return;
+              <>
+                <div>{post.title}</div>
+                <div>{post.content}</div>
+                <div>{post.created_at}</div>
+              </>;
+            })}
+          </div>
+        )
+      )}
       {error && <div>{error}</div>}
       {needsAuth && <div>Log in to view the posts!</div>}
     </main>
