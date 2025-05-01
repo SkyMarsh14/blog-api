@@ -1,0 +1,7 @@
+.text_center {
+  text-align: center;
+}
+.main_container {
+  max-width: 800px;
+  margin: auto;
+}
