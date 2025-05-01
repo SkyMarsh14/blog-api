@@ -1,6 +1,6 @@
 import useFetch from "../hooks/useFetch";
 const Home = () => {
-  const { data, error, loading, needsAuth } = useFetch(
+  const { data, error, loading } = useFetch(
     "https://blog-api-production-d003.up.railway.app/posts/"
   );
   return (
@@ -28,7 +28,6 @@ const Home = () => {
         )
       )}
       {error && <div>{error}</div>}
-      {needsAuth && <div>Log in to view the posts!</div>}
     </main>
   );
 };
