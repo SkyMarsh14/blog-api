@@ -2,6 +2,9 @@
   text-align: center;
 }
 .main_container {
-  max-width: 800px;
+  max-width: 30rem;
   margin: auto;
+}
+.form_container {
+  padding: 2em;
 }

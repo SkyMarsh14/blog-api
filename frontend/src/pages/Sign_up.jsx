@@ -1,22 +1,22 @@
 import Form from "../components/Form";
 import styles from "../styles/Login.module.css";
-const Login = () => {
+const Sign_up = () => {
   return (
     <main>
       <div className={styles.main_container}>
         <div className={styles.text_center}>
-          <h2>Welcome back</h2>
-          <div>Sign in to your account to continue</div>
+          <h2>Create an acocunt</h2>
+          <div>Publish your passion, your way</div>
         </div>
         <div className={styles.form_container}>
-          <Form />
+          <Form type="sign-up" />
           <div>
-            <p>Don't have an account?</p>
-            <a href="sign-up">Sign up</a>
+            <p>Already have an account?</p>
+            <a href="login">Log in</a>
           </div>
         </div>
       </div>
     </main>
   );
 };
-export default Login;
+export default Sign_up;

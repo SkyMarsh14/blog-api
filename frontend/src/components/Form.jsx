@@ -1,16 +1,17 @@
+import styles from "../styles/Form.module.css";
 const LoginForm = ({ type }) => {
   return (
-    <form action="" method="post">
-      <div>
+    <form className={styles.form} action="" method="post">
+      <div className={styles.form_field}>
         <label htmlFor="username">Username</label>
         <input type="text" id="username" placeholder="Username" />
       </div>
-      <div>
+      <div className={styles.form_field}>
         <label htmlFor="password">Password</label>
         <input type="text" id="password" placeholder="Password" />
       </div>
       {type === "sign-up" && (
-        <div>
+        <div className={styles.form_field}>
           <label htmlFor="adminPassword">Admin Password</label>
           <input
             type="text"
@@ -19,7 +20,9 @@ const LoginForm = ({ type }) => {
           />
         </div>
       )}
-      <button>{type === "sign-up" ? "Sign Up" : "Login"}</button>
+      <button className={styles.btn}>
+        {type === "sign-up" ? "Sign Up" : "Login"}
+      </button>
     </form>
   );
 };
