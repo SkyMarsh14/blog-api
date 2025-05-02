@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-
+import blog_api from "../helper/blog_api";
 const useFetch = (url, method = "GET") => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(null);
   const [needsAuth, setNeedsAuth] = useState(null);
-  url = "https://blog-api-production-d003.up.railway.app/" + url;
+  url = blog_api + url;
   useEffect(() => {
     const fetchData = async () => {
       try {

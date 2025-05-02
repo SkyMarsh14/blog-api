@@ -1,8 +1,12 @@
 import prisma from "../db/prisma.js";
 const postContoller = {
   get_all: async (req, res) => {
-    const posts = await prisma.post.findMany();
-    res.json({ message: "Welcome to posts route", posts });
+    const posts = await prisma.post.findMany({
+      where: {
+        published: true,
+      },
+    });
+    res.json({ posts });
   },
   get_post: async (req, res) => {
     const postId = Number(req.params.postId);
