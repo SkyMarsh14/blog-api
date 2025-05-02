@@ -12,12 +12,14 @@ const loginController = {
         username: username,
       },
     });
-    const valid = await match(password, user.password);
     if (!user) {
       return res.json({
         message: "Incorrect username.",
       });
-    } else if (!valid) {
+    }
+    const valid = await match(password, user.password);
+
+    if (!valid) {
       return res.json({
         message: "Incorrect password.",
       });
