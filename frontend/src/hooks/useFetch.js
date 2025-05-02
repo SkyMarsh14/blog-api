@@ -5,7 +5,7 @@ const useFetch = (url, method = "GET") => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(null);
   const [needsAuth, setNeedsAuth] = useState(null);
-
+  url = "https://blog-api-production-d003.up.railway.app/" + url;
   useEffect(() => {
     const fetchData = async () => {
       try {

@@ -1,8 +1,6 @@
 import useFetch from "../hooks/useFetch";
 const Home = () => {
-  const { data, error, loading } = useFetch(
-    "https://blog-api-production-d003.up.railway.app/posts/"
-  );
+  const { data, error, loading } = useFetch("posts");
   return (
     <main>
       <div>
