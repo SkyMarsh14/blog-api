@@ -1,0 +1,19 @@
+.header_title {
+  font-size: 2em;
+}
+header {
+  padding: 0 2em;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav_right {
+  display: flex;
+  padding-inline-start: 0;
+  gap: 1em;
+}
+.nav_right li {
+  list-style-type: none;
+}

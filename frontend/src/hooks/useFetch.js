@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const useFetch = (url) => {
+const useFetch = (url, method = "GET") => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(null);
@@ -10,7 +10,7 @@ const useFetch = (url) => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const response = await fetch(url, { mode: "cors" });
+        const response = await fetch(url, { method: method }, { mode: "cors" });
         if (!response.ok) {
           if (response.status === 401) {
             setNeedsAuth(true);

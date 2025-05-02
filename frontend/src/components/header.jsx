@@ -1,9 +1,10 @@
+import styles from "../styles/Header.module.css";
 const Header = () => {
   return (
     <header>
-      <div>Blog Api</div>
       <nav>
-        <ul>
+        <div className={styles.header_title}>Blog App</div>
+        <ul className={styles.nav_right}>
           <li>
             <a href="/">Home</a>
           </li>
