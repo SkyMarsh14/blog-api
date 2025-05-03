@@ -1,14 +1,13 @@
 import styles from "../styles/Form.module.css";
-import blog_api from "../helper/blog_api";
 import { TriangleAlert } from "lucide-react";
 import { useState } from "react";
-const LoginForm = ({ type }) => {
+const LoginForm = ({ type, url }) => {
   const [form, setForm] = useState({
     username: "",
     password: "",
     adminPassword: "",
   });
-  const [message, setMessage] = useState(null);
+  const [errors, setErrors] = useState(null);
   function handleChange(e) {
     setForm((prev) => ({
       ...prev,
@@ -17,7 +16,7 @@ const LoginForm = ({ type }) => {
   }
   async function handleSubmit(e) {
     e.preventDefault();
-    setMessage(null);
+    setErrors(null);
     if (form.adminPassword === "") {
       delete form.adminPassword;
     }
@@ -29,15 +28,18 @@ const LoginForm = ({ type }) => {
       },
     };
     try {
-      const response = await fetch(blog_api, options);
+      const response = await fetch(url, options);
       const json = await response.json();
-      if (Object.hasOwn(json, "message")) {
-        setMessage(json.message);
+      if (Object.hasOwn(json, "errors")) {
+        setErrors(json.errors);
         setForm({
           username: "",
           password: "",
           adminPassword: "",
         });
+      }
+      if (Object.hasOwn(json, "token")) {
+        localStorage.setItem("token", json.token);
       }
     } catch (errr) {
       throw new Error(`Server error. Response status: ${response.status}`);
@@ -45,12 +47,13 @@ const LoginForm = ({ type }) => {
   }
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      {message && (
-        <div className={styles.error}>
-          <TriangleAlert className={styles.icon} />
-          <div>{message}</div>
-        </div>
-      )}
+      {errors &&
+        errors.map((error) => (
+          <div className={styles.error}>
+            <TriangleAlert className={styles.icon} />
+            <div>{error.msg}</div>
+          </div>
+        ))}
       <div className={styles.form_field}>
         <label htmlFor="username">Username</label>
         <input
@@ -81,6 +84,7 @@ const LoginForm = ({ type }) => {
             id="adminPassword"
             placeholder="Admin Password (Optional)"
             name="adminPassword"
+            onChange={handleChange}
             value={form.adminPassword}
           />
         </div>

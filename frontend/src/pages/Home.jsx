@@ -1,4 +1,5 @@
 import useFetch from "../hooks/useFetch";
+import styles from "../styles/Home.module.css";
 const Home = () => {
   const { data, error, loading } = useFetch("posts");
   return (
@@ -12,7 +13,7 @@ const Home = () => {
         <div>Loading...</div>
       ) : (
         data && (
-          <div>
+          <div className={styles.post_container}>
             {data.posts.map((post) => {
               return (
                 <div key={crypto.randomUUID()}>
