@@ -30,10 +30,9 @@ const validator = {
   admin: [
     body("adminPassword")
       .trim()
-      .notEmpty()
       .optional({ nullable: true })
       .custom(async (adminPassword) => {
-        if (!adminPassword === process.env.ADMIN_PASSWORD) {
+        if (adminPassword && adminPassword !== process.env.ADMIN_PASSWORD) {
           throw new Error("Incorrect admin password.");
         }
         return true;

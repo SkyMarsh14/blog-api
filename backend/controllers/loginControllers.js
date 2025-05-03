@@ -4,6 +4,7 @@ import prisma from "../db/prisma.js";
 import { hashPassword, match } from "../lib/hashPassword.js";
 import jwt from "jsonwebtoken";
 import { Role } from "../generated/prisma/index.js";
+const sign_up_validator = validator.user.concat(validator.admin);
 const loginController = {
   validate_login: [
     validator.login,
@@ -36,8 +37,7 @@ const loginController = {
     },
   ],
   create_user: [
-    validator.user,
-    validator.admin,
+    sign_up_validator,
     async (req, res) => {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
