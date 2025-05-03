@@ -1,5 +1,6 @@
 import styles from "../styles/Form.module.css";
 import blog_api from "../helper/blog_api";
+import { TriangleAlert } from "lucide-react";
 import { useState } from "react";
 const LoginForm = ({ type }) => {
   const [form, setForm] = useState({
@@ -8,7 +9,6 @@ const LoginForm = ({ type }) => {
     adminPassword: "",
   });
   const [message, setMessage] = useState(null);
-  const [error, setError] = useState(null);
   function handleChange(e) {
     setForm((prev) => ({
       ...prev,
@@ -18,7 +18,6 @@ const LoginForm = ({ type }) => {
   async function handleSubmit(e) {
     e.preventDefault();
     setMessage(null);
-    setError(null);
     if (form.adminPassword === "") {
       delete form.adminPassword;
     }
@@ -29,19 +28,29 @@ const LoginForm = ({ type }) => {
         "Content-Type": "application/json",
       },
     };
-    const response = await fetch(blog_api, options);
-    if (!response.ok) {
-      console.log(response);
-      setError(`Response status: ${response.status}`);
-    }
-    const json = await response.json();
-    if (Object.hasOwn(json, "message")) {
-      setMessage(json.message);
+    try {
+      const response = await fetch(blog_api, options);
+      const json = await response.json();
+      if (Object.hasOwn(json, "message")) {
+        setMessage(json.message);
+        setForm({
+          username: "",
+          password: "",
+          adminPassword: "",
+        });
+      }
+    } catch (errr) {
+      throw new Error(`Server error. Response status: ${response.status}`);
     }
   }
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      {message && <div>{message}</div>}
+      {message && (
+        <div className={styles.error}>
+          <TriangleAlert className={styles.icon} />
+          <div>{message}</div>
+        </div>
+      )}
       <div className={styles.form_field}>
         <label htmlFor="username">Username</label>
         <input
@@ -50,6 +59,7 @@ const LoginForm = ({ type }) => {
           placeholder="Username"
           name="username"
           onChange={handleChange}
+          value={form.username}
         />
       </div>
       <div className={styles.form_field}>
@@ -60,6 +70,7 @@ const LoginForm = ({ type }) => {
           placeholder="Password"
           name="password"
           onChange={handleChange}
+          value={form.password}
         />
       </div>
       {type === "sign-up" && (
@@ -70,6 +81,7 @@ const LoginForm = ({ type }) => {
             id="adminPassword"
             placeholder="Admin Password (Optional)"
             name="adminPassword"
+            value={form.adminPassword}
           />
         </div>
       )}

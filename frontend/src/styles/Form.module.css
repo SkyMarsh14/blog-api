@@ -10,3 +10,16 @@
   padding: 0.2em 0em;
   margin: 2em 0;
 }
+.error {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.2em;
+  background-color: rgb(246, 95, 95);
+  color: white;
+  text-align: center;
+}
+.error > svg {
+  height: 0.9em;
+}
