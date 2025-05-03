@@ -25,7 +25,7 @@ const Home = () => {
           </div>
         )
       )}
-      {error && <div>{error}</div>}
+      {error && console.log(error)}
     </main>
   );
 };

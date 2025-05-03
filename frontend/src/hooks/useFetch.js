@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import blog_api from "../helper/blog_api";
-const useFetch = (url, method = "GET") => {
+const useFetch = (url = "", method = "GET") => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(null);
