@@ -56,7 +56,7 @@ const loginController = {
           return res.json(user);
         }
       } else {
-        return res.json({ message: "Incorrect password." });
+        return res.json({ message: "Incorrect admin password." });
       }
 
       const user = await prisma.user.create({
