@@ -1,2 +1,2 @@
-const blog_api = "https://blog-api-production-d003.up.railway.app/";
+const blog_api = "http://localhost:3000/";
 export default blog_api;

@@ -1,4 +1,5 @@
 import styles from "../styles/Form.module.css";
+import blog_api from "../helper/blog_api";
 import { useState } from "react";
 const LoginForm = ({ type }) => {
   const [form, setForm] = useState({
@@ -6,21 +7,41 @@ const LoginForm = ({ type }) => {
     password: "",
     adminPassword: "",
   });
+  const [message, setMessage] = useState(null);
+  const [error, setError] = useState(null);
   function handleChange(e) {
     setForm((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
   }
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
+    setMessage(null);
+    setError(null);
     if (form.adminPassword === "") {
       delete form.adminPassword;
     }
-    const formData = new FormData();
+    const options = {
+      method: "POST",
+      body: JSON.stringify(form),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const response = await fetch(blog_api, options);
+    if (!response.ok) {
+      console.log(response);
+      setError(`Response status: ${response.status}`);
+    }
+    const json = await response.json();
+    if (Object.hasOwn(json, "message")) {
+      setMessage(json.message);
+    }
   }
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
+      {message && <div>{message}</div>}
       <div className={styles.form_field}>
         <label htmlFor="username">Username</label>
         <input
