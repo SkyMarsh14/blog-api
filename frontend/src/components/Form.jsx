@@ -1,7 +1,9 @@
 import styles from "../styles/Form.module.css";
 import { TriangleAlert } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 const LoginForm = ({ type, url }) => {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     username: "",
     password: "",
@@ -32,14 +34,13 @@ const LoginForm = ({ type, url }) => {
       const json = await response.json();
       if (Object.hasOwn(json, "errors")) {
         setErrors(json.errors);
-        setForm({
-          username: "",
-          password: "",
-          adminPassword: "",
+        errors.forEach((error) => {
+          setForm((prev) => ({ ...prev, [error.path]: "" }));
         });
       }
       if (Object.hasOwn(json, "token")) {
         localStorage.setItem("token", json.token);
+        return navigate("/");
       }
     } catch (errr) {
       throw new Error(`Server error. Response status: ${response.status}`);
@@ -49,7 +50,7 @@ const LoginForm = ({ type, url }) => {
     <form className={styles.form} onSubmit={handleSubmit}>
       {errors &&
         errors.map((error) => (
-          <div className={styles.error}>
+          <div className={styles.error} key={crypto.randomUUID()}>
             <TriangleAlert className={styles.icon} />
             <div>{error.msg}</div>
           </div>
