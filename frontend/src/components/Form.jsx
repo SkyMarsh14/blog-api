@@ -1,5 +1,6 @@
 import styles from "../styles/Form.module.css";
-import { TriangleAlert } from "lucide-react";
+import { TriangleAlert, UserCheck } from "lucide-react";
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 const LoginForm = ({ type, url }) => {
@@ -9,7 +10,9 @@ const LoginForm = ({ type, url }) => {
     password: "",
     adminPassword: "",
   });
+  const [message, setMessage] = useState(null);
   const [errors, setErrors] = useState(null);
+  const [disabled, setDisabled] = useState(false);
   function handleChange(e) {
     setForm((prev) => ({
       ...prev,
@@ -19,9 +22,6 @@ const LoginForm = ({ type, url }) => {
   async function handleSubmit(e) {
     e.preventDefault();
     setErrors(null);
-    if (form.adminPassword === "") {
-      delete form.adminPassword;
-    }
     const options = {
       method: "POST",
       body: JSON.stringify(form),
@@ -42,12 +42,29 @@ const LoginForm = ({ type, url }) => {
         localStorage.setItem("token", json.token);
         return navigate("/");
       }
+      if (Object.hasOwn(json, "user")) {
+        setMessage(
+          "Your account has been successfully created! Redirecting..."
+        );
+        setDisabled(true);
+        setTimeout(() => {
+          setMessage(null);
+          setDisabled(false);
+          return navigate("/login");
+        }, 4000);
+      }
     } catch (errr) {
       throw new Error(`Server error. Response status: ${response.status}`);
     }
   }
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
+      {message && (
+        <div className={`${styles.success} ${styles.fade_in}`}>
+          <UserCheck></UserCheck>
+          <div>{message}</div>
+        </div>
+      )}
       {errors &&
         errors.map((error) => (
           <div className={styles.error} key={crypto.randomUUID()}>
@@ -90,7 +107,7 @@ const LoginForm = ({ type, url }) => {
           />
         </div>
       )}
-      <button className={styles.btn} type="submit">
+      <button className={styles.btn} type="submit" disabled={disabled}>
         {type === "sign-up" ? "Sign Up" : "Login"}
       </button>
     </form>

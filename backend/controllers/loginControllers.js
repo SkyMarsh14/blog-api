@@ -55,7 +55,9 @@ const loginController = {
             role: Role.ADMIN,
           },
         });
-        return res.json(user);
+        return res.json({
+          user,
+        });
       }
 
       const user = await prisma.user.create({
@@ -64,7 +66,7 @@ const loginController = {
           password: hashedPassword,
         },
       });
-      res.json(user);
+      res.json({ user });
     },
   ],
 };
