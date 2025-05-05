@@ -1,5 +1,7 @@
 import useFetch from "../hooks/useFetch";
 import styles from "../styles/Home.module.css";
+import { useContext } from "react";
+import UserContext from "../helper/UserContext";
 const Home = () => {
   const { data, error, loading } = useFetch("posts");
   return (
@@ -32,12 +34,23 @@ const Home = () => {
 };
 
 const LoginDiv = () => {
+  const [auth, setAuth] = useContext(UserContext);
   return (
     <div>
       <p>Join our community to create and view other's creation.</p>
       <div>
-        <a href="/login">Log in</a>
-        <a href="/sign-up">Sign up</a>
+        {!auth && (
+          <>
+            <a href="/login">Log in</a>
+            <a href="/sign-up">Sign up</a>
+          </>
+        )}
+        {auth && (
+          <>
+            <a href="/create-post">Create Post</a>
+            <a href="/posts">My Posts</a>
+          </>
+        )}
       </div>
     </div>
   );

@@ -1,4 +1,6 @@
 import styles from "../styles/Header.module.css";
+import { useContext } from "react";
+import UserContext from "../helper/UserContext";
 const Header = () => {
   return (
     <header>
@@ -8,12 +10,7 @@ const Header = () => {
           <li>
             <a href="/">Home</a>
           </li>
-          <li>
-            <a href="/logout">Logout</a>
-          </li>
-          <li>
-            <a href="/posts">My Posts</a>
-          </li>
+          <Links />
           <li>
             <a href="/admin">Admin</a>
           </li>
@@ -24,5 +21,30 @@ const Header = () => {
       </nav>
     </header>
   );
+};
+
+const Links = () => {
+  const [auth, setAuth] = useContext(UserContext);
+  if (auth) {
+    return (
+      <>
+        <li>
+          <a href="/logout">Logout</a>
+        </li>
+        <li>
+          <a href="/posts">My Posts</a>
+        </li>
+      </>
+    );
+  } else {
+    <>
+      <li>
+        <a href="/sign-up">Sign Up</a>
+      </li>
+      <li>
+        <a href="/login">Login</a>
+      </li>
+    </>;
+  }
 };
 export default Header;

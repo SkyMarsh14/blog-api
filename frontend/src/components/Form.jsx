@@ -1,9 +1,10 @@
 import styles from "../styles/Form.module.css";
 import { TriangleAlert, UserCheck } from "lucide-react";
-
-import { useState } from "react";
+import UserContext from "../helper/UserContext";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 const LoginForm = ({ type, url }) => {
+  const [auth, setAuth] = useContext(UserContext);
   const navigate = useNavigate();
   const [form, setForm] = useState({
     username: "",
@@ -40,6 +41,7 @@ const LoginForm = ({ type, url }) => {
       }
       if (Object.hasOwn(json, "token")) {
         localStorage.setItem("token", json.token);
+        setAuth(true);
         return navigate("/");
       }
       if (Object.hasOwn(json, "user")) {
