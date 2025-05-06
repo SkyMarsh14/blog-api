@@ -47,5 +47,14 @@ const userController = {
     });
     return res.json({ user });
   },
+  posts: async (req, res) => {
+    const userId = req.user.id;
+    const posts = await prisma.post.findMany({
+      where: {
+        authorId: userId,
+      },
+    });
+    return res.json({ posts });
+  },
 };
 export default userController;
