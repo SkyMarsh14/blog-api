@@ -1,6 +1,7 @@
 import styles from "../styles/Header.module.css";
 import { useContext } from "react";
 import UserContext from "../helper/UserContext";
+import LogoutBtn from "./LogoutBtn";
 const Header = () => {
   return (
     <header>
@@ -29,7 +30,7 @@ const Links = () => {
     return (
       <>
         <li>
-          <a href="/logout">Logout</a>
+          <LogoutBtn />
         </li>
         <li>
           <a href="/posts">My Posts</a>
