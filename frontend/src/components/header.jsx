@@ -11,13 +11,13 @@ const Header = () => {
           <li>
             <a href="/">Home</a>
           </li>
-          <Links />
           <li>
             <a href="/admin">Admin</a>
           </li>
           <li>
             <a href="/create-post">Write blog</a>
           </li>
+          <Links />
         </ul>
       </nav>
     </header>
@@ -30,10 +30,10 @@ const Links = () => {
     return (
       <>
         <li>
-          <LogoutBtn />
+          <a href="/posts">My Posts</a>
         </li>
         <li>
-          <a href="/posts">My Posts</a>
+          <LogoutBtn />
         </li>
       </>
     );

@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Sign_up from "./pages/Sign_up";
 import UserPosts from "./pages/UserPosts";
+import CreatePost from "./pages/CreatePost";
 const routes = [
   {
     path: "/",
@@ -12,6 +13,7 @@ const routes = [
       { path: "login", element: <Login /> },
       { path: "sign-up", element: <Sign_up /> },
       { path: "posts", element: <UserPosts /> },
+      { path: "create-post", element: <CreatePost /> },
     ],
   },
 ];

@@ -1,12 +1,14 @@
 import { useState, useEffect, useContext } from "react";
 import UserContext from "../helper/UserContext";
 import blog_api from "../helper/blog_api";
+import { useNavigate } from "react-router-dom";
 const useFetch = (url = "", method = "GET") => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(null);
   const [needsAuth, setNeedsAuth] = useState(null);
   const [auth, setAuth] = useContext(UserContext);
+  const navigate = useNavigate();
   url = blog_api + url;
   useEffect(() => {
     const fetchData = async () => {
@@ -27,7 +29,8 @@ const useFetch = (url = "", method = "GET") => {
             setNeedsAuth(true);
             setAuth(false);
             localStorage.removeItem("token");
-            return;
+
+            return navigate("/login");
           }
           throw new Error(`Response status: ${response.status}`);
         }
