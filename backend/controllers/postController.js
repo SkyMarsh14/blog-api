@@ -18,13 +18,14 @@ const postContoller = {
     res.json({ post });
   },
   create_one: async (req, res) => {
-    const { title, content } = req.body;
+    const { title, content, published } = req.body;
     try {
       const post = await prisma.post.create({
         data: {
-          title: title,
-          content: content,
+          title,
+          content,
           authorId: req.user.id,
+          published,
         },
       });
       return res.json({ post });
