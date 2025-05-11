@@ -1,10 +1,9 @@
 import { Plus } from "lucide-react";
 import styles from "../styles/UserPosts.module.css";
 import useFetch from "../hooks/useFetch";
-import { useState } from "react";
 const UserPosts = () => {
   const { data, error, loading } = useFetch("user/posts");
-
+  console.log(data);
   return (
     <div className={styles.main_container}>
       <div>
@@ -24,7 +23,16 @@ const UserPosts = () => {
             </p>
           </>
         )}
-        {data && data.posts.map((post) => <div>{post}</div>)}
+        {data &&
+          data.posts.map((post) => (
+            <div key={post.id}>
+              <div>Post Title: {post.title}</div>
+              <div>Content: {post.content}</div>
+              <div>Published? {post.published}</div>
+              <div>Created at {post.createdAt}</div>
+              <div>Updated at {post.updatedAt}</div>
+            </div>
+          ))}
       </main>
     </div>
   );

@@ -1,8 +1,23 @@
 import { useState } from "react";
+import sendForm from "../helper/sendForm";
+import blog_api from "../helper/blog_api";
+import { useNavigate } from "react-router-dom";
 const CreatePost = () => {
   const [isChecked, setIsChecked] = useState(false);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
   function handleCheck() {
     setIsChecked((checked) => !checked);
+  }
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const url = blog_api + "posts";
+    try {
+      const data = await sendForm(e.currentTarget, url, navigate);
+      navigate("/posts");
+    } catch (err) {
+      setError(err);
+    }
   }
   return (
     <div>
@@ -11,10 +26,15 @@ const CreatePost = () => {
           <h1>Create a New Post</h1>
           <div>Share your thoughts with others!</div>
         </div>
-        <form action="">
+        <form action="" onSubmit={handleSubmit}>
           <div>
             <label htmlFor="post-title">Post Title</label>
-            <input type="text" placeholder="Post Title" id="post-title" />
+            <input
+              type="text"
+              placeholder="Post Title"
+              id="post-title"
+              name="title"
+            />
           </div>
           <div>
             <label htmlFor="post-content">Post Content</label>
@@ -22,6 +42,7 @@ const CreatePost = () => {
               type="text"
               placeholder="What's happening?"
               id="post-content"
+              name="content"
             />
           </div>
           <div>
@@ -31,6 +52,7 @@ const CreatePost = () => {
               id="publish-status"
               checked={isChecked}
               onChange={handleCheck}
+              name="published"
             />
           </div>
           <p>
