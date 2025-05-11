@@ -28,7 +28,11 @@ const UserPosts = () => {
             <div key={post.id}>
               <div>Post Title: {post.title}</div>
               <div>Content: {post.content}</div>
-              <div>Published? {post.published}</div>
+              <div>
+                {post.published
+                  ? "This post is published"
+                  : "This post is not published yet"}
+              </div>
               <div>Created at {post.createdAt}</div>
               <div>Updated at {post.updatedAt}</div>
             </div>
