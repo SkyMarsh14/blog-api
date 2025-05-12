@@ -1,6 +1,7 @@
 import { Plus } from "lucide-react";
 import styles from "../styles/UserPosts.module.css";
 import useFetch from "../hooks/useFetch";
+import { Eye, SquarePen, Trash2, Calendar } from "lucide-react";
 const UserPosts = () => {
   const { data, error, loading } = useFetch("user/posts");
   console.log(data);
@@ -26,19 +27,48 @@ const UserPosts = () => {
         {data &&
           data.posts.map((post) => (
             <div key={post.id}>
-              <div>Post Title: {post.title}</div>
-              <div>Content: {post.content}</div>
               <div>
-                {post.published
-                  ? "This post is published"
-                  : "This post is not published yet"}
+                <div>Post Title: {post.title}</div>
+                <div>
+                  {post.published
+                    ? "This post is published"
+                    : "This post is not published yet"}
+                </div>
+                <div>
+                  <Calendar />
+                  <div>Created at {formatDate(post.createdAt)}</div>
+                </div>
+                <div>Updated at {formatDate(post.updatedAt)}</div>
               </div>
-              <div>Created at {post.createdAt}</div>
-              <div>Updated at {post.updatedAt}</div>
+              <nav className={styles.post_actions}>
+                <button
+                  className={`${styles.post_button} ${styles.post_button_view}`}
+                >
+                  <Eye />
+                  <div>View</div>
+                </button>
+                <button className={styles.post_button}>
+                  <SquarePen />
+                  <div>Edit</div>
+                </button>
+                <button
+                  className={`${styles.post_button} ${styles.post_button_delete}`}
+                >
+                  <Trash2 />
+                  <div>Delete</div>
+                </button>
+              </nav>
             </div>
           ))}
       </main>
     </div>
   );
 };
+function formatDate(date) {
+  return new Date(date).toLocaleString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+}
 export default UserPosts;

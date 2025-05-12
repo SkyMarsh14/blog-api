@@ -5,7 +5,7 @@ import LogoutBtn from "./LogoutBtn";
 const Header = () => {
   return (
     <header>
-      <nav>
+      <nav className={styles.header_nav}>
         <div className={styles.header_title}>Blog App</div>
         <ul className={styles.nav_right}>
           <li>

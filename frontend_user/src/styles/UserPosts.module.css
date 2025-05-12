@@ -1,2 +1,7 @@
-.main_container {
+.post_button {
+  display: flex;
+  gap: 0.2em;
+}
+.post_button_delete {
+  color: #c10008;
 }
