@@ -30,7 +30,7 @@ const useFetch = (url = "", method = "GET") => {
             setAuth(false);
             localStorage.removeItem("token");
 
-            return navigate("/login");
+            // return navigate("/login");
           }
           throw new Error(`Response status: ${response.status}`);
         }
