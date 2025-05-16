@@ -1,12 +1,13 @@
 .modal_container {
   margin: auto;
-  border: none;
-  outline: none;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   padding: 0;
+  border: none;
   border-radius: 10px;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .banner {
   color: white;
@@ -14,8 +15,8 @@
   display: flex;
   justify-content: space-between;
   padding: 0.5em 1em;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  overflow: hidden;
+  font-weight: 700;
 }
 .content {
   display: flex;
@@ -28,4 +29,11 @@
 .session_detail {
   display: grid;
   gap: 0.5em;
+}
+.ok_btn {
+  background-color: rgb(255, 83, 83);
+  color: white;
+  border-radius: 5px;
+  padding: 0 1em;
+  border: none;
 }

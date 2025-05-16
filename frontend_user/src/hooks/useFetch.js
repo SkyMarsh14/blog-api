@@ -29,8 +29,9 @@ const useFetch = (url = "", method = "GET") => {
             setNeedsAuth(true);
             setAuth(false);
             localStorage.removeItem("token");
-
-            // return navigate("/login");
+            setTimeout(() => {
+              return navigate("/login");
+            }, 5000);
           }
           throw new Error(`Response status: ${response.status}`);
         }

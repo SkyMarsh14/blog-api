@@ -63,7 +63,7 @@ const UserPosts = () => {
             ))}
         </main>
       </div>
-      <SessionModal />
+      <SessionModal auth={needsAuth} />
     </>
   );
 };
