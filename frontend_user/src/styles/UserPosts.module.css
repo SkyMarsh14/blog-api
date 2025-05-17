@@ -6,6 +6,9 @@
   display: flex;
   justify-content: space-between;
   background-color: var(--post-card-bg);
+  box-shadow: var(--post-card-shadow);
+  padding: 1em 2em;
+  border-radius: 5px;
 }
 .post_button {
   display: flex;
@@ -40,6 +43,7 @@
   text-decoration: none;
   transition: filter 0.3s ease-in-out;
 }
+
 .link_create_post:hover {
   filter: brightness(50%);
 }

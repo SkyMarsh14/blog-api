@@ -3,8 +3,14 @@ import styles from "../styles/UserPosts.module.css";
 import useFetch from "../hooks/useFetch";
 import { Eye, SquarePen, Trash2, Calendar } from "lucide-react";
 import SessionModal from "../components/SessionModal";
+import { useNavigate } from "react-router-dom";
 const UserPosts = () => {
   const { data, error, loading, needsAuth } = useFetch("user/posts");
+  const navigate = useNavigate();
+  function handleClick(e, path, postId) {
+    e.preventDefault();
+    navigate(`/${path}/${postId}`);
+  }
   return (
     <>
       <div className={styles.main_container}>
@@ -42,12 +48,20 @@ const UserPosts = () => {
                 </div>
                 <nav className={styles.post_right}>
                   <button
+                    onClick={(e) => {
+                      handleClick(e, "posts", post.id);
+                    }}
                     className={`${styles.post_button} ${styles.post_button_view}`}
                   >
                     <Eye />
                     <div>View</div>
                   </button>
-                  <button className={styles.post_button}>
+                  <button
+                    className={styles.post_button}
+                    onClick={(e) => {
+                      handleClick(e, "edit-post", post.id);
+                    }}
+                  >
                     <SquarePen />
                     <div>Edit</div>
                   </button>

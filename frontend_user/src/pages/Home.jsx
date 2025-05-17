@@ -6,7 +6,7 @@ const Home = () => {
   const { data, error, loading } = useFetch("posts");
   return (
     <main>
-      <div>
+      <div className={styles.main_container}>
         <h1>Publish your passion, your way</h1>
         <p>Create a unique and beautiful blog easily.</p>
         <LoginDiv />
@@ -38,17 +38,28 @@ const LoginDiv = () => {
   return (
     <div>
       <p>Join our community to create and view other's creation.</p>
-      <div>
+      <div className={styles.links_div}>
         {!auth && (
           <>
-            <a href="/login">Log in</a>
-            <a href="/sign-up">Sign up</a>
+            <a className={`${styles.link} ${styles.link_light}`} href="/login">
+              Log in
+            </a>
+            <a className={`${styles.link} ${styles.link_dark}`} href="/sign-up">
+              Sign up
+            </a>
           </>
         )}
         {auth && (
           <>
-            <a href="/create-post">Create Post</a>
-            <a href="/posts">My Posts</a>
+            <a
+              className={`${styles.link} ${styles.link_light}`}
+              href="/create-post"
+            >
+              Create Post
+            </a>
+            <a className={`${styles.link} ${styles.link_dark}`} href="/posts">
+              My Posts
+            </a>
           </>
         )}
       </div>
