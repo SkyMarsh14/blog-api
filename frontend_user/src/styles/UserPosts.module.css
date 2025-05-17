@@ -1,7 +1,36 @@
+.main_container {
+  max-width: 80%;
+  margin: auto;
+}
+.post_card {
+  display: flex;
+  justify-content: space-between;
+}
 .post_button {
   display: flex;
   gap: 0.2em;
 }
 .post_button_delete {
   color: #c10008;
+}
+.post_right {
+  display: flex;
+  gap: 0.5em;
+  align-items: center;
+}
+.post_header {
+  display: flex;
+  justify-content: space-between;
+  height: 2em;
+  align-items: center;
+  padding: 2em 0;
+  > div {
+    font-size: 2em;
+  }
+}
+.post_header > a {
+  display: flex;
+  align-items: center;
+  font-size: 1.2em;
+  background-color: var(--main-button-bg-color);
 }

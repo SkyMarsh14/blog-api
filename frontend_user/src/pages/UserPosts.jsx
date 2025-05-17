@@ -8,14 +8,14 @@ const UserPosts = () => {
   return (
     <>
       <div className={styles.main_container}>
-        <div>
-          <div>Your Posts</div>
+        <div className={styles.post_header}>
+          <div>My Posts</div>
           <a href="/create-post">
             <Plus />
             <div>Create New Post</div>
           </a>
         </div>
-        <main>
+        <main className={styles.post_container}>
           {loading && <div>Loading...</div>}
           {data && data.posts.length === 0 && (
             <>
@@ -27,21 +27,20 @@ const UserPosts = () => {
           )}
           {data &&
             data.posts.map((post) => (
-              <div key={post.id}>
-                <div>
-                  <div>Post Title: {post.title}</div>
+              <div className={styles.post_card} key={post.id}>
+                <div className={styles.post_left}>
+                  <div className={styles.post_title}>{post.title}</div>
                   <div>
                     {post.published
-                      ? "This post is published"
-                      : "This post is not published yet"}
+                      ? "This post is published."
+                      : "This post is not visible to other users."}
                   </div>
-                  <div>
+                  <div className={styles.post_date}>
                     <Calendar />
-                    <div>Created at {formatDate(post.createdAt)}</div>
+                    <div>{formatDate(post.createdAt)}</div>
                   </div>
-                  <div>Updated at {formatDate(post.updatedAt)}</div>
                 </div>
-                <nav className={styles.post_actions}>
+                <nav className={styles.post_right}>
                   <button
                     className={`${styles.post_button} ${styles.post_button_view}`}
                   >
@@ -74,4 +73,5 @@ function formatDate(date) {
     day: "numeric",
   });
 }
+
 export default UserPosts;
