@@ -10,13 +10,13 @@ const Header = () => {
         <div className={styles.header_title}>Blog App</div>
         <ul className={styles.nav_right}>
           <li>
-            <NavLink path="/" content="Home" />
+            <NavLink path="/" content="Dashboard" />
           </li>
           <li>
             <NavLink path="/admin" content="Admin" />
           </li>
           <li>
-            <NavLink path="/create-post" content="Write blog" />
+            <NavLink path="/create-post" content="Create Post" />
           </li>
           <Links />
         </ul>
@@ -41,10 +41,10 @@ const Links = () => {
   } else {
     <>
       <li>
-        <a href="/sign-up">Sign Up</a>
+        <NavLink path="/sign-up" content="Sign Up" />
       </li>
       <li>
-        <a href="/login">Login</a>
+        <NavLink path="/login" content="Login" />
       </li>
     </>;
   }

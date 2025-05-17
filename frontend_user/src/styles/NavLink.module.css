@@ -1,13 +1,24 @@
-.nav_link {
+.active {
   color: white;
   background-color: var(--main-button-bg-color);
   padding: 0.2em 2em;
   text-decoration: none;
-  border-radius: 10px;
+  border-radius: 5px;
 }
-.nav_link:hover {
+.active:hover {
   filter: brightness(50%);
 }
-.nav_link:visited {
+.active:visited {
   color: white;
+}
+.inactive {
+  color: rgb(81, 81, 81);
+  background-color: white;
+  border: var(--gray-border);
+  text-decoration: none;
+  padding: 0.2em 2em;
+  border-radius: 5px;
+}
+.inactive:hover {
+  filter: brightness(50%);
 }
