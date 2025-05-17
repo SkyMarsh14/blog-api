@@ -23,11 +23,15 @@ const Home = () => {
                 <div className={styles.post_card} key={crypto.randomUUID()}>
                   <div className={styles.post_title}>{post.title}</div>
                   <div className={styles.post_content}>{post.content}</div>
+                  <a className={styles.post_link} href={`/posts/${post.id}`}>
+                    Read More
+                  </a>
                   <div className={styles.post_info}>
                     <div className={styles.post_user}>
                       <User />
                       {post.author.username}
                     </div>
+
                     <div>{formatDate(post.createdAt)}</div>
                   </div>
                 </div>

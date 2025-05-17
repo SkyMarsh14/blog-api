@@ -7,6 +7,8 @@
 .post_card {
   padding: 1em 2em;
   box-shadow: var(--post-card-shadow);
+  display: flex;
+  flex-direction: column;
 }
 .post_title {
   font-size: 1.3em;
@@ -62,5 +64,16 @@
   display: flex;
   justify-content: space-between;
   color: var(--gray-text-color);
-  margin-top: 1em;
+}
+.post_content {
+  display: -webkit-box;
+  line-clamp: 4;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.post_link {
+  margin-left: auto;
+  padding-top: 1em;
+  margin-top: auto;
 }
