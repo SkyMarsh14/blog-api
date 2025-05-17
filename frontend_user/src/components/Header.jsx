@@ -2,6 +2,7 @@ import styles from "../styles/Header.module.css";
 import { useContext } from "react";
 import UserContext from "../helper/UserContext";
 import LogoutBtn from "./LogoutBtn";
+import NavLink from "./NavLink";
 const Header = () => {
   return (
     <header>
@@ -9,13 +10,13 @@ const Header = () => {
         <div className={styles.header_title}>Blog App</div>
         <ul className={styles.nav_right}>
           <li>
-            <a href="/">Home</a>
+            <NavLink path="/" content="Home" />
           </li>
           <li>
-            <a href="/admin">Admin</a>
+            <NavLink path="/admin" content="Admin" />
           </li>
           <li>
-            <a href="/create-post">Write blog</a>
+            <NavLink path="/create-post" content="Write blog" />
           </li>
           <Links />
         </ul>
@@ -30,7 +31,7 @@ const Links = () => {
     return (
       <>
         <li>
-          <a href="/posts">My Posts</a>
+          <NavLink path="/posts" content="My Posts" />
         </li>
         <li>
           <LogoutBtn />

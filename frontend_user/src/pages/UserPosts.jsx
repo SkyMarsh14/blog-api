@@ -10,7 +10,7 @@ const UserPosts = () => {
       <div className={styles.main_container}>
         <div className={styles.post_header}>
           <div>My Posts</div>
-          <a href="/create-post">
+          <a href="/create-post" className={styles.link_create_post}>
             <Plus />
             <div>Create New Post</div>
           </a>

@@ -5,6 +5,7 @@
 .post_card {
   display: flex;
   justify-content: space-between;
+  background-color: var(--post-card-bg);
 }
 .post_button {
   display: flex;
@@ -28,9 +29,20 @@
     font-size: 2em;
   }
 }
-.post_header > a {
+.link_create_post {
   display: flex;
   align-items: center;
-  font-size: 1.2em;
+  gap: 0.5em;
+  color: white;
   background-color: var(--main-button-bg-color);
+  padding: 0.2em 2em;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: filter 0.3s ease-in-out;
+}
+.link_create_post:hover {
+  filter: brightness(50%);
+}
+.link_create_post:visited {
+  color: white;
 }

@@ -1,0 +1,13 @@
+.nav_link {
+  color: white;
+  background-color: var(--main-button-bg-color);
+  padding: 0.2em 2em;
+  text-decoration: none;
+  border-radius: 10px;
+}
+.nav_link:hover {
+  filter: brightness(50%);
+}
+.nav_link:visited {
+  color: white;
+}

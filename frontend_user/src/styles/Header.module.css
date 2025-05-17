@@ -3,6 +3,7 @@
 }
 header {
   padding: 0 2em;
+  background-color: var(--header-bg-color);
 }
 .header_nav {
   display: flex;
