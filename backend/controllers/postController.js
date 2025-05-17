@@ -5,6 +5,13 @@ const postContoller = {
       where: {
         published: true,
       },
+      include: {
+        author: {
+          select: {
+            username: true,
+          },
+        },
+      },
     });
     res.json({ posts });
   },

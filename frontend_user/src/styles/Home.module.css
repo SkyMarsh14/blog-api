@@ -1,5 +1,20 @@
 .post_container {
   display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));
+  gap: 1.5em;
+  padding: 2em;
+}
+.post_card {
+  padding: 1em 2em;
+  box-shadow: var(--post-card-shadow);
+}
+.post_title {
+  font-size: 1.3em;
+  font-weight: 800;
+  margin-bottom: 0.5em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .main_container {
   background-color: var(--home-main-bg-color);
@@ -35,4 +50,17 @@
 }
 .link_dark {
   background-color: var(--main-button-bg-color);
+}
+.post_user {
+  display: flex;
+  align-items: center;
+  > svg {
+    height: 1em;
+  }
+}
+.post_info {
+  display: flex;
+  justify-content: space-between;
+  color: var(--gray-text-color);
+  margin-top: 1em;
 }

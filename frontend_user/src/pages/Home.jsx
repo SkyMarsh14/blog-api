@@ -1,7 +1,9 @@
 import useFetch from "../hooks/useFetch";
 import styles from "../styles/Home.module.css";
 import { useContext } from "react";
+import { User } from "lucide-react";
 import UserContext from "../helper/UserContext";
+import formatDate from "../helper/formatDate";
 const Home = () => {
   const { data, error, loading } = useFetch("posts");
   return (
@@ -18,10 +20,16 @@ const Home = () => {
           <div className={styles.post_container}>
             {data.posts.map((post) => {
               return (
-                <div key={crypto.randomUUID()}>
-                  <div>{post.title}</div>
-                  <div>{post.content}</div>
-                  <div>{post.created_at}</div>
+                <div className={styles.post_card} key={crypto.randomUUID()}>
+                  <div className={styles.post_title}>{post.title}</div>
+                  <div className={styles.post_content}>{post.content}</div>
+                  <div className={styles.post_info}>
+                    <div className={styles.post_user}>
+                      <User />
+                      {post.author.username}
+                    </div>
+                    <div>{formatDate(post.createdAt)}</div>
+                  </div>
                 </div>
               );
             })}

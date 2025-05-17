@@ -4,6 +4,7 @@ import useFetch from "../hooks/useFetch";
 import { Eye, SquarePen, Trash2, Calendar } from "lucide-react";
 import SessionModal from "../components/SessionModal";
 import { useNavigate } from "react-router-dom";
+import formatDate from "../helper/formatDate";
 const UserPosts = () => {
   const { data, error, loading, needsAuth } = useFetch("user/posts");
   const navigate = useNavigate();
@@ -80,12 +81,5 @@ const UserPosts = () => {
     </>
   );
 };
-function formatDate(date) {
-  return new Date(date).toLocaleString("en-US", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
-}
 
 export default UserPosts;
