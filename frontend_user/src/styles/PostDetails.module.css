@@ -1,3 +1,12 @@
-.main_container {
-  display: grid;
+.post_title {
+  font-size: 1.2em;
+  font-weight: 800;
+  color: var(--post-title-color);
+  margin: 1em 0;
+}
+.post_createdAt {
+  float: right;
+}
+.input {
+  margin: 2em 0em;
 }

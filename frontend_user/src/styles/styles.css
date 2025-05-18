@@ -4,7 +4,7 @@ body {
 .main_container {
   display: grid;
   grid-template-columns: 1fr min(42rem, 100%) 1fr;
-  margin-top: 4em;
+  margin: 4em 0;
 }
 main {
   grid-column: 2/3;
