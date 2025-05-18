@@ -1,0 +1,41 @@
+.main_container {
+  display: grid;
+  grid-template-columns: 1fr min(42rem, 100%) 1fr;
+  margin-top: 4em;
+}
+.main {
+  grid-column: 2/3;
+  border: var(--gray-border);
+  padding: 1em 2em;
+  background-color: white;
+}
+.form_field {
+  display: flex;
+  flex-direction: column;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+.submit {
+  background-color: var(--main-button-bg-color);
+  color: white;
+  border-radius: 5px;
+  border: none;
+  align-self: end;
+  min-width: 15em;
+  transition: filter 0.3s ease-in-out;
+}
+.submit:hover {
+  cursor: pointer;
+  filter: brightness(50%);
+}
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+.form_field > textarea {
+  resize: none;
+}

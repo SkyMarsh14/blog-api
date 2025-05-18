@@ -1,4 +1,5 @@
 import { Plus } from "lucide-react";
+import blogWriterImg from "../public/book-writer.svg";
 import styles from "../styles/UserPosts.module.css";
 import useFetch from "../hooks/useFetch";
 import { Eye, SquarePen, Trash2, Calendar } from "lucide-react";
@@ -30,6 +31,11 @@ const UserPosts = () => {
               <p>
                 Write your first post from <a href="create-post">here!</a>
               </p>
+              <img
+                src={blogWriterImg}
+                alt="A man writing a blog."
+                className={styles.img}
+              />
             </>
           )}
           {data &&

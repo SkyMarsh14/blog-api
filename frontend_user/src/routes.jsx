@@ -5,6 +5,7 @@ import Sign_up from "./pages/Sign_up";
 import UserPosts from "./pages/UserPosts";
 import CreatePost from "./pages/CreatePost";
 import NotFound from "./pages/NotFound";
+import PostDetails from "./pages/PostDetails";
 const routes = [
   {
     path: "/",
@@ -15,6 +16,7 @@ const routes = [
       { path: "login", element: <Login /> },
       { path: "sign-up", element: <Sign_up /> },
       { path: "posts", element: <UserPosts /> },
+      { path: "posts/:postId", element: <PostDetails /> },
       { path: "create-post", element: <CreatePost /> },
     ],
   },

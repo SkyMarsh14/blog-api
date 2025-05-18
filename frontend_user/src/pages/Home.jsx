@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { User } from "lucide-react";
 import UserContext from "../helper/UserContext";
 import formatDate from "../helper/formatDate";
+import { Link } from "react-router-dom";
 const Home = () => {
   const { data, error, loading } = useFetch("posts");
   return (
@@ -23,9 +24,9 @@ const Home = () => {
                 <div className={styles.post_card} key={crypto.randomUUID()}>
                   <div className={styles.post_title}>{post.title}</div>
                   <div className={styles.post_content}>{post.content}</div>
-                  <a className={styles.post_link} href={`/posts/${post.id}`}>
+                  <Link to={`/posts/${post.id}`} className={styles.post_link}>
                     Read More
-                  </a>
+                  </Link>
                   <div className={styles.post_info}>
                     <div className={styles.post_user}>
                       <User />
