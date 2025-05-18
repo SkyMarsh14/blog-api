@@ -21,6 +21,26 @@ const postContoller = {
       where: {
         id: postId,
       },
+      include: {
+        author: {
+          select: {
+            username: true,
+          },
+        },
+        Comment: {
+          include: {
+            author: {
+              select: {
+                id: true,
+                username: true,
+              },
+            },
+          },
+          orderBy: {
+            createdAt: "desc",
+          },
+        },
+      },
     });
     res.json({ post });
   },
