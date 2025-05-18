@@ -3,8 +3,6 @@
   margin: auto;
 }
 .post_card {
-  display: flex;
-  justify-content: space-between;
   background-color: var(--post-card-bg);
   box-shadow: var(--post-card-shadow);
   padding: 1em 2em;
@@ -28,11 +26,17 @@
   justify-content: space-between;
   height: 2em;
   align-items: center;
-  margin-top: 2em;
   padding: 2em 0;
+  border-bottom: var(--gray-border);
+  margin-bottom: 1em;
   > div {
     font-size: 2em;
   }
+}
+.nav_bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
 }
 .link_create_post {
   display: flex;
@@ -65,4 +69,12 @@
   gap: 0.2em;
   align-items: center;
   margin-top: 1em;
+}
+.post_title {
+  font-size: 1.2em;
+  font-weight: 800;
+  color: darkblue;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

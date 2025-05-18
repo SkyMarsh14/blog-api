@@ -21,8 +21,8 @@ const CreatePost = () => {
     }
   }
   return (
-    <div className={styles.main_container}>
-      <main className={styles.main}>
+    <div className="main_container">
+      <main>
         <div>
           <h1>Create a New Post</h1>
           <div>Share your thoughts with others!</div>

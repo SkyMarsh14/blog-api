@@ -8,8 +8,8 @@ import { Link } from "react-router-dom";
 const Home = () => {
   const { data, error, loading } = useFetch("posts");
   return (
-    <main>
-      <div className={styles.main_container}>
+    <div>
+      <div className={styles.banner_container}>
         <h1>Publish your passion, your way</h1>
         <p>Create a unique and beautiful blog easily.</p>
         <LoginDiv />
@@ -32,7 +32,6 @@ const Home = () => {
                       <User />
                       {post.author.username}
                     </div>
-
                     <div>{formatDate(post.createdAt)}</div>
                   </div>
                 </div>
@@ -42,7 +41,7 @@ const Home = () => {
         )
       )}
       {error && console.log(error)}
-    </main>
+    </div>
   );
 };
 

@@ -18,7 +18,7 @@
   white-space: nowrap;
   overflow: hidden;
 }
-.main_container {
+.banner_container {
   background-color: var(--home-main-bg-color);
   color: white;
   padding: 2em 3em;

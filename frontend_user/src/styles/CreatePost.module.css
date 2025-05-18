@@ -1,14 +1,3 @@
-.main_container {
-  display: grid;
-  grid-template-columns: 1fr min(42rem, 100%) 1fr;
-  margin-top: 4em;
-}
-.main {
-  grid-column: 2/3;
-  border: var(--gray-border);
-  padding: 1em 2em;
-  background-color: white;
-}
 .form_field {
   display: flex;
   flex-direction: column;

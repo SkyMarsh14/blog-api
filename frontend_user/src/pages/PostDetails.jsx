@@ -1,13 +1,10 @@
 import useFetch from "../hooks/useFetch";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import styles from "../styles/PostDetails.module.css";
 const PostDetails = () => {
   const { postId } = useParams();
+  const navigate = useNavigate();
   const { data, error, loading, needsAuth } = useFetch(`posts/${postId}`);
-  return (
-    <div>
-      <h1>Welcome to post details.</h1>
-      <h2>Now you are visiting {postId}</h2>
-    </div>
-  );
+  return <div></div>;
 };
 export default PostDetails;
