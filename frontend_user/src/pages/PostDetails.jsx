@@ -5,14 +5,15 @@ import formatDate from "../helper/formatDate";
 import { useState } from "react";
 import blog_api from "../helper/blog_api";
 import sendForm from "../helper/sendForm";
+import { User } from "lucide-react";
 const PostDetails = () => {
   const { postId } = useParams();
   const { data, error, loading, needsAuth } = useFetch(`posts/${postId}`);
   return (
     <div className="main_container">
-      <main>
-        {data && (
-          <>
+      {data && (
+        <>
+          <main>
             <div className={styles.post_container}>
               <div className={styles.post_title}>{data.post.title}</div>
               <div className={styles.post_content}>{data.post.content}</div>
@@ -20,10 +21,11 @@ const PostDetails = () => {
                 {formatDate(data.post.createdAt)}
               </div>
             </div>
-          </>
-        )}
-      </main>
-      <CommentInput needsAuth={needsAuth} postId={postId} />
+          </main>
+          <CommentInput needsAuth={needsAuth} postId={postId} />
+          <Comments comments={data.post.Comment} />
+        </>
+      )}
     </div>
   );
 };
@@ -80,6 +82,22 @@ const CommentInput = ({ needsAuth, postId }) => {
           onFocus={() => setFocused(true)}
         />
       )}
+    </div>
+  );
+};
+const Comments = ({ comments }) => {
+  return (
+    <div className={styles.comments_container}>
+      {comments.map((comment) => (
+        <div className={styles.comment}>
+          <div className={styles.user}>
+            <User />
+            <span>{comment.author.username}</span>
+          </div>
+          <div className={styles.content}>{comment.content}</div>
+          <div className={styles.created}>{formatDate(comment.createdAt)}</div>
+        </div>
+      ))}
     </div>
   );
 };

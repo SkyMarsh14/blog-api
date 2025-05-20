@@ -46,3 +46,23 @@
   background-color: #44485a;
   color: white;
 }
+.comments_container {
+  grid-column: 2/3;
+  border: var(--gray-border);
+  border-radius: 5px;
+  padding: 0.5em 1em;
+  background-color: rgb(255, 255, 255);
+}
+.comment {
+  margin: 1em 0;
+}
+.user {
+  display: flex;
+}
+.created {
+  float: right;
+}
+.content {
+  margin-left: 2em;
+  margin-top: 0.2em;
+}
