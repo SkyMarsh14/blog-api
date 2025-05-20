@@ -15,6 +15,7 @@ const useFetch = (url = "", method = "GET") => {
       try {
         setLoading(true);
         const token = localStorage.getItem("token");
+        if (!token) setNeedsAuth(true);
         const options = {
           method: method,
           headers: {
@@ -26,7 +27,6 @@ const useFetch = (url = "", method = "GET") => {
         const response = await fetch(url, options);
         if (!response.ok) {
           if (response.status === 401) {
-            setNeedsAuth(true);
             setAuth(false);
             localStorage.removeItem("token");
             setTimeout(() => {

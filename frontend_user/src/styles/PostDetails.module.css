@@ -7,6 +7,42 @@
 .post_createdAt {
   float: right;
 }
-.input {
+.input_container {
   margin: 2em 0em;
+  grid-column: 2/3;
+  width: 100%;
+  padding: 0.5em;
+  border: var(--gray-border);
+  border-radius: 10px;
+  background-color: white;
+}
+.input_container > input {
+  border: none;
+  width: 100%;
+}
+.input_container > textarea {
+  border: none;
+  width: 100%;
+  padding: 0.5em;
+  resize: vertical;
+}
+.button_container {
+  display: flex;
+  justify-content: end;
+  gap: 1em;
+  button {
+    border-radius: 10px;
+    border: none;
+    padding: 0.4em 0.5em;
+    font-size: 0.9em;
+    cursor: pointer;
+    font-weight: 500;
+  }
+}
+.cancel {
+  background-color: #eaedef;
+}
+.submit {
+  background-color: #44485a;
+  color: white;
 }

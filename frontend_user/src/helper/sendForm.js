@@ -28,7 +28,7 @@ const sendForm = async (formElement, url, navigate) => {
     }
     return await response.json();
   } catch (err) {
-    consle.error(`Form submission error:`, err);
+    console.error(`Form submission error:`, err);
     throw new Error(err);
   }
 };

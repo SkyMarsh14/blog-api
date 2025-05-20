@@ -1,7 +1,10 @@
 import useFetch from "../hooks/useFetch";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import styles from "../styles/PostDetails.module.css";
 import formatDate from "../helper/formatDate";
+import { useState } from "react";
+import blog_api from "../helper/blog_api";
+import sendForm from "../helper/sendForm";
 const PostDetails = () => {
   const { postId } = useParams();
   const { data, error, loading, needsAuth } = useFetch(`posts/${postId}`);
@@ -19,25 +22,66 @@ const PostDetails = () => {
             </div>
           </>
         )}
-        <CommentInput needsAuth={needsAuth} />
       </main>
+      <CommentInput needsAuth={needsAuth} postId={postId} />
     </div>
   );
 };
 
-const CommentInput = ({ needsAuth }) => {
-  if (needsAuth) {
+const CommentInput = ({ needsAuth, postId }) => {
+  const navigate = useNavigate();
+  const [focused, setFocused] = useState(false);
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const url = blog_api + `posts/${postId}/comments`;
+    try {
+      const data = await sendForm(e.currentTarget, url, navigate);
+      window.location.reload();
+    } catch (err) {
+      console.error(err);
+    }
+  }
+  if (focused) {
     return (
-      <div className={styles.input}>
-        <input type="text" placeholder="Login to join this conversation." />
-        <a href="/login">Login</a>
-      </div>
+      <form className={styles.input_container} onSubmit={handleSubmit}>
+        <textarea
+          name="content"
+          id="comment"
+          className={styles.textarea}
+          autoFocus
+        ></textarea>
+        <div className={styles.button_container}>
+          <button
+            className={styles.cancel}
+            onClick={() => setFocused(false)}
+            type="button"
+          >
+            Cancel
+          </button>
+          <button className={styles.submit} type="submit">
+            Comment
+          </button>
+        </div>
+      </form>
     );
   }
   return (
-    <div className={styles.input}>
-      <input type="text" placeholder="Join the conversation." />
+    <div className={styles.input_container}>
+      {needsAuth ? (
+        <input
+          type="text"
+          placeholder="Login to join this conversation."
+          disabled={true}
+        />
+      ) : (
+        <input
+          type="text"
+          placeholder="Join the conversation."
+          onFocus={() => setFocused(true)}
+        />
+      )}
     </div>
   );
 };
+
 export default PostDetails;
