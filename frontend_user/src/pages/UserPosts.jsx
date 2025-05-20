@@ -48,7 +48,7 @@ const UserPosts = () => {
                       ? "This post is published."
                       : "This post is not visible to other users."}
                   </div>
-                  <div className={styles.nav_bottom}>
+                  <div className={styles.nav_buttons}>
                     <div className={styles.post_date}>
                       <Calendar />
                       <div>{formatDate(post.createdAt)}</div>

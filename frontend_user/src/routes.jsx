@@ -6,6 +6,7 @@ import UserPosts from "./pages/UserPosts";
 import CreatePost from "./pages/CreatePost";
 import NotFound from "./pages/NotFound";
 import PostDetails from "./pages/PostDetails";
+import EditPost from "./pages/EditPost";
 const routes = [
   {
     path: "/",
@@ -18,6 +19,7 @@ const routes = [
       { path: "posts", element: <UserPosts /> },
       { path: "posts/:postId", element: <PostDetails /> },
       { path: "create-post", element: <CreatePost /> },
+      { path: "edit-post/:postId", element: <EditPost /> },
     ],
   },
 ];

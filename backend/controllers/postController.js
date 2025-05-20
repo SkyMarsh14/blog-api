@@ -61,7 +61,7 @@ const postContoller = {
     }
   },
   update: async (req, res) => {
-    const { title, content } = req.body;
+    const { title, content, published } = req.body;
     try {
       const post = await prisma.post.update({
         where: {
@@ -71,6 +71,7 @@ const postContoller = {
         data: {
           title,
           content,
+          published,
         },
       });
       return res.json({ post });

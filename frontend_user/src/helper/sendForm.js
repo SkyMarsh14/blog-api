@@ -1,4 +1,4 @@
-const sendForm = async (formElement, url, navigate) => {
+const sendForm = async (formElement, url, navigate, method = "POST") => {
   try {
     const formData = new FormData(formElement);
     const body = {};
@@ -12,7 +12,7 @@ const sendForm = async (formElement, url, navigate) => {
     }
     const token = localStorage.getItem("token");
     const options = {
-      method: "POST",
+      method: method,
       body: JSON.stringify(body),
       headers: {
         "Content-Type": "application/json",
