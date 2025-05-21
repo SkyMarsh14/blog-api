@@ -6,6 +6,7 @@ import { useState } from "react";
 import blog_api from "../helper/blog_api";
 import sendForm from "../helper/sendForm";
 import { User } from "lucide-react";
+import womanCommentImg from "../public/woman-comment.svg";
 const PostDetails = () => {
   const { postId } = useParams();
   const { data, error, loading, needsAuth } = useFetch(`posts/${postId}`);
@@ -86,6 +87,20 @@ const CommentInput = ({ needsAuth, postId }) => {
   );
 };
 const Comments = ({ comments }) => {
+  if (!comments.length) {
+    return (
+      <div className={styles.comments_container}>
+        <img
+          src={womanCommentImg}
+          alt="Woman is commenting on the post"
+          className={styles.comment_img}
+        />
+        <div className={styles.be_first}>
+          Be the first one to comment on this post!
+        </div>
+      </div>
+    );
+  }
   return (
     <div className={styles.comments_container}>
       {comments.map((comment) => (

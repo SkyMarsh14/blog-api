@@ -6,12 +6,33 @@ import { Eye, SquarePen, Trash2, Calendar } from "lucide-react";
 import SessionModal from "../components/SessionModal";
 import { useNavigate } from "react-router-dom";
 import formatDate from "../helper/formatDate";
+import blog_api from "../helper/blog_api";
 const UserPosts = () => {
   const { data, error, loading, needsAuth } = useFetch("user/posts");
   const navigate = useNavigate();
   function handleClick(e, path, postId) {
     e.preventDefault();
     navigate(`/${path}/${postId}`);
+  }
+  async function handleDelete(e, postId) {
+    e.preventDefault();
+    document.body.style.cursor = "wait";
+    try {
+      const url = blog_api + `posts/${postId}`;
+      const token = localStorage.getItem("token");
+      const response = await fetch(url, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          ...(token && { Authorization: `Bearer ${token}` }),
+        },
+      });
+      window.location.reload();
+    } catch (err) {
+      console.error(err);
+    } finally {
+      document.body.style.cursor = "default";
+    }
   }
   return (
     <>
@@ -74,6 +95,9 @@ const UserPosts = () => {
                       </button>
                       <button
                         className={`${styles.post_button} ${styles.post_button_delete}`}
+                        onClick={(e) => {
+                          handleDelete(e, post.id);
+                        }}
                       >
                         <Trash2 />
                         <div>Delete</div>

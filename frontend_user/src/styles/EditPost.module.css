@@ -5,3 +5,12 @@
 .title {
   font-size: 3em;
 }
+.link {
+  grid-column: 2/3;
+  display: flex;
+  font-size: 1.3em;
+  align-items: center;
+}
+.form_field > textarea {
+  resize: vertical;
+}

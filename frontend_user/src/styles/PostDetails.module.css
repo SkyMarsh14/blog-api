@@ -66,3 +66,11 @@
   margin-left: 2em;
   margin-top: 0.2em;
 }
+.comment_img {
+  height: 15em;
+  margin: auto;
+}
+.be_first {
+  text-align: center;
+  font-size: 1.3em;
+}
