@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import styles from "pageLink.module.css";
+import styles from "../styles/pageLink.module.css";
 const PageLink = ({ path, content }) => {
   return (
     <NavLink
