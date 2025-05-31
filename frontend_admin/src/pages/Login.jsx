@@ -1,8 +1,8 @@
 import Form from "../components/Form";
-import styles from "../styles/Login.module.css";
+import styles from "../styles/login.module.css";
 const Login = () => {
   return (
-    <main>
+    <main className={styles.wrapper}>
       <div className={styles.main_container}>
         <div className={styles.text_center}>
           <h2>Admin Page</h2>

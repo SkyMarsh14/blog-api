@@ -1,13 +1,18 @@
 import Header from "../components/Header";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import UserContext from "../helper/UserContext";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 const App = () => {
-  const getInitialState = () => {
+  const navigate = useNavigate();
+  const [auth, setAuth] = useState(() => {
     const token = localStorage.getItem("token");
-    return token;
-  };
-  const [auth, setAuth] = useState(getInitialState);
+    return token || false;
+  });
+  useEffect(() => {
+    if (!auth) {
+      navigate("/login");
+    }
+  });
   return (
     <UserContext.Provider value={[auth, setAuth]}>
       <Header></Header>
