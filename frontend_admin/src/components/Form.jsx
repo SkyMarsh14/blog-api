@@ -3,6 +3,7 @@ import { TriangleAlert, UserCheck } from "lucide-react";
 import UserContext from "../helper/UserContext";
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 const LoginForm = ({ type, url }) => {
   const [auth, setAuth] = useContext(UserContext);
   const navigate = useNavigate();
@@ -40,6 +41,10 @@ const LoginForm = ({ type, url }) => {
         });
       }
       if (Object.hasOwn(json, "token")) {
+        const payload = jwtDecode(json.token);
+        if (payload.role === "USER") {
+          return setErrors([{ msg: "Your don't have admin previleges" }]);
+        }
         localStorage.setItem("token", json.token);
         setAuth(true);
         return navigate("/");
