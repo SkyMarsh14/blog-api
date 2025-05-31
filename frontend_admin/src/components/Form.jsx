@@ -1,4 +1,4 @@
-import styles from "../styles/Form.module.css";
+import styles from "../styles/form.module.css";
 import { TriangleAlert, UserCheck } from "lucide-react";
 import UserContext from "../helper/UserContext";
 import { useState, useContext } from "react";
