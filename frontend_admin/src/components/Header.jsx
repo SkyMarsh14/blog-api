@@ -2,12 +2,12 @@ import styles from "../styles/header.module.css";
 import PageLink from "./PageLink";
 const Header = () => {
   return (
-    <header className={styles.header_nav}>
-      <nav>
+    <header>
+      <nav className={styles.header_nav}>
         <div className={styles.header_title}>Blog App Admin</div>
         <ul className={styles.nav_right}>
           <li>
-            <PageLink path="/users" content="Users" />
+            <PageLink path="/user" content="User" />
           </li>
           <li>
             <PageLink path="/posts" content="Posts" />

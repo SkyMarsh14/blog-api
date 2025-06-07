@@ -1,0 +1,37 @@
+.main_container {
+  max-width: 50rem;
+  margin: auto;
+  margin-top: 2em;
+}
+
+.users th {
+  background-color: #05aa6d;
+  color: white;
+}
+tbody tr:nth-child(even) {
+  background-color: #d6eeee;
+}
+table,
+td,
+th {
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+td,
+th {
+  padding: 15px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+tr {
+  transition: background-color 0.2s ease-in-out;
+}
+.users tr:hover {
+  background-color: #05744b;
+}

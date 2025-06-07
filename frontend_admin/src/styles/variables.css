@@ -1,3 +1,14 @@
 :root {
   --login-page-bg: #f3f4f7;
+  --main-bg-color: #f9f9f9;
+  --main-button-bg-color: #0084d1;
+  --post-card-bg: #ffff;
+  --header-bg-color: #2c2f33;
+  --gray-border: 1px solid #e0e0e0;
+  --header-main-color: #2ea9f0;
+  --post-card-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  --home-main-bg-color: #34395b;
+  --gray-text-color: #5e5e5e;
+  --post-title-color: darkblue;
 }

@@ -1,11 +1,16 @@
 import prisma from "../db/prisma.js";
 const userController = {
   index: async (req, res) => {
-    const user = await prisma.user.findUnique({
-      where: {
-        id: req.user.id,
+    const user = await prisma.user.findMany({
+      omit: {
+        password: true,
+      },
+      include: {
+        comments: true,
+        posts: true,
       },
     });
+
     return res.json({ user });
   },
   get: async (req, res) => {

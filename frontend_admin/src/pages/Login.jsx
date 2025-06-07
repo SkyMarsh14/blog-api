@@ -11,7 +11,7 @@ const Login = () => {
         <div className={styles.form_container}>
           <Form type="login" url={import.meta.env.VITE_API_URL} />
           <div>
-            <p>Don't have an account?</p>
+            <p>Only users with admin previleges can view this site.</p>
             <a href={import.meta.env.VITE_MAIN_SITE}>Return to main site</a>
           </div>
         </div>
