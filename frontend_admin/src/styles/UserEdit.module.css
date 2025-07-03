@@ -1,0 +1,25 @@
+.title {
+  font-size: 1.5em;
+  text-align: center;
+  margin-bottom: 1em;
+}
+.main {
+  max-width: 30em;
+  margin: auto;
+  margin-top: 2em;
+  padding: 1em 2em;
+  border-radius: 5px;
+  border: var(--form-border);
+}
+.form_div {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1em;
+}
+.select {
+  align-self: baseline;
+}
+.btn {
+  width: 100%;
+  margin: 0.5em 0;
+}

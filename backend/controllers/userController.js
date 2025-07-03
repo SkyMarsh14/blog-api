@@ -14,9 +14,10 @@ const userController = {
     return res.json({ user });
   },
   get: async (req, res) => {
+    const userId = Number(req.params.userId);
     const user = await prisma.user.findUnique({
       where: {
-        id: req.params.userId,
+        id: userId,
       },
       select: {
         username: true,
@@ -42,9 +43,10 @@ const userController = {
   },
   update_role: async (req, res) => {
     const { role } = req.body;
+    const userId = Number(req.params.userId);
     const user = await prisma.user.update({
       where: {
-        id: req.params.userId,
+        id: userId,
       },
       data: {
         role,
@@ -53,13 +55,22 @@ const userController = {
     return res.json({ user });
   },
   posts: async (req, res) => {
-    const userId = req.user.id;
+    const userId = Number(req.user.id);
     const posts = await prisma.post.findMany({
       where: {
         authorId: userId,
       },
     });
     return res.json({ posts });
+  },
+  delete: async (req, res) => {
+    const userId = Number(req.user.id);
+    const user = await prisma.user.delete({
+      where: {
+        id: userId,
+      },
+    });
+    return res.json({ user });
   },
 };
 export default userController;

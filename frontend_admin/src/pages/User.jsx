@@ -1,6 +1,7 @@
 import useFetch from "../hooks/useFetch";
 import { useNavigate } from "react-router-dom";
 import styles from "../styles/user.module.css";
+import FetchError from "../components/FetchError";
 const User = () => {
   const { data, error, loading } = useFetch("user");
   const navigate = useNavigate();
@@ -10,17 +11,17 @@ const User = () => {
   return (
     <div>
       <main className={styles.main_container}>
-        <table className={styles.users}>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Role</th>
-              <th>Username</th>
-              <th>Posts </th>
-              <th>Comments</th>
-            </tr>
-          </thead>
-          {data && (
+        {data && (
+          <table className={styles.users}>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Role</th>
+                <th>Username</th>
+                <th>Posts </th>
+                <th>Comments</th>
+              </tr>
+            </thead>
             <tbody>
               {data.user.map((user) => {
                 return (
@@ -34,8 +35,9 @@ const User = () => {
                 );
               })}
             </tbody>
-          )}
-        </table>
+          </table>
+        )}
+        {error && <FetchError />}
       </main>
     </div>
   );
