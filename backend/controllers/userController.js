@@ -32,7 +32,7 @@ const userController = {
     const { username, password } = req.body;
     const user = await prisma.user.update({
       where: {
-        id: req.params.userId,
+        id: Number(req.params.userId),
       },
       data: {
         username,
@@ -64,7 +64,7 @@ const userController = {
     return res.json({ posts });
   },
   delete: async (req, res) => {
-    const userId = Number(req.user.id);
+    const userId = Number(req.params.userId);
     const user = await prisma.user.delete({
       where: {
         id: userId,

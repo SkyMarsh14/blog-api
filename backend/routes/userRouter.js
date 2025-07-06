@@ -9,4 +9,5 @@ userRouter.get("/posts", userController.posts);
 userRouter.get("/:userId", userController.get);
 userRouter.put("/:userId", isUser, userController.update);
 userRouter.put("/:userId/role", isUser, userController.update_role);
+userRouter.delete("/:userId", isUser, userController.delete);
 export default userRouter;
