@@ -2,6 +2,7 @@ import prisma from "../db/prisma.js";
 const userController = {
   index: async (req, res) => {
     const user = await prisma.user.findMany({
+      orderBy: [{ id: "asc" }],
       omit: {
         password: true,
       },

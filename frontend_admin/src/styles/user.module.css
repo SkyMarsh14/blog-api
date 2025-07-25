@@ -21,6 +21,7 @@ th {
 table {
   border-collapse: collapse;
   width: 100%;
+  margin-bottom: 2em;
 }
 td,
 th {
@@ -34,4 +35,10 @@ tr {
 }
 .users tr:hover {
   background-color: #05744b;
+}
+th {
+  transform: filter 0.5ßs ease-in-out;
+}
+th:hover {
+  filter: brightness(130%);
 }
