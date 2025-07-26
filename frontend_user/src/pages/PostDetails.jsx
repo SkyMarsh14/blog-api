@@ -3,7 +3,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import styles from "../styles/PostDetails.module.css";
 import formatDate from "../helper/formatDate";
 import { useState } from "react";
-import blog_api from "../helper/blog_api";
 import sendForm from "../helper/sendForm";
 import { User } from "lucide-react";
 import womanCommentImg from "../public/woman-comment.svg";
@@ -36,7 +35,7 @@ const CommentInput = ({ needsAuth, postId }) => {
   const [focused, setFocused] = useState(false);
   async function handleSubmit(e) {
     e.preventDefault();
-    const url = blog_api + `posts/${postId}/comments`;
+    const url = import.meta.env.VITE_BLOGAPI + `posts/${postId}/comments`;
     try {
       const data = await sendForm(e.currentTarget, url, navigate);
       window.location.reload();

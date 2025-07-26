@@ -6,7 +6,6 @@ import { Eye, SquarePen, Trash2, Calendar } from "lucide-react";
 import SessionModal from "../components/SessionModal";
 import { useNavigate } from "react-router-dom";
 import formatDate from "../helper/formatDate";
-import blog_api from "../helper/blog_api";
 const UserPosts = () => {
   const { data, error, loading, needsAuth } = useFetch("user/posts");
   const navigate = useNavigate();
@@ -18,7 +17,7 @@ const UserPosts = () => {
     e.preventDefault();
     document.body.style.cursor = "wait";
     try {
-      const url = blog_api + `posts/${postId}`;
+      const url = import.meta.env.VITE_BLOGAPI + `posts/${postId}`;
       const token = localStorage.getItem("token");
       const response = await fetch(url, {
         method: "DELETE",

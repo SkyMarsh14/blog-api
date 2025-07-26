@@ -1,6 +1,5 @@
 import Form from "../components/Form";
 import styles from "../styles/Login.module.css";
-import blog_api from "../helper/blog_api";
 const Login = () => {
   return (
     <main>
@@ -10,7 +9,7 @@ const Login = () => {
           <div>Sign in to your account to continue</div>
         </div>
         <div className={styles.form_container}>
-          <Form type="login" url={blog_api} />
+          <Form type="login" url={import.meta.env.VITE_BLOGAPI} />
           <div>
             <p>Don't have an account?</p>
             <a href="sign-up">Sign up</a>

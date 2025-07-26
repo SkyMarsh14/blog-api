@@ -1,6 +1,5 @@
 import { useState } from "react";
 import sendForm from "../helper/sendForm";
-import blog_api from "../helper/blog_api";
 import { useNavigate } from "react-router-dom";
 import styles from "../styles/CreatePost.module.css";
 const CreatePost = () => {
@@ -12,7 +11,7 @@ const CreatePost = () => {
   }
   async function handleSubmit(e) {
     e.preventDefault();
-    const url = blog_api + "posts";
+    const url = import.meta.env.VITE_BLOGAPI + "posts";
     try {
       const data = await sendForm(e.currentTarget, url, navigate);
       navigate("/posts");

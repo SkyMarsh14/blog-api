@@ -1,6 +1,5 @@
 import { useState, useEffect, useContext } from "react";
 import UserContext from "../helper/UserContext";
-import blog_api from "../helper/blog_api";
 import { useNavigate } from "react-router-dom";
 const useFetch = (url = "", method = "GET") => {
   const [data, setData] = useState(null);
@@ -9,7 +8,7 @@ const useFetch = (url = "", method = "GET") => {
   const [needsAuth, setNeedsAuth] = useState(null);
   const [auth, setAuth] = useContext(UserContext);
   const navigate = useNavigate();
-  url = blog_api + url;
+  url = import.meta.env.VITE_BLOGAPI + url;
   useEffect(() => {
     const fetchData = async () => {
       try {

@@ -2,7 +2,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import styles from "../styles/EditPost.module.css";
 import sendForm from "../helper/sendForm";
-import blog_api from "../helper/blog_api";
 import { ArrowLeft } from "lucide-react";
 const EditPost = () => {
   const { postId } = useParams();
@@ -13,7 +12,7 @@ const EditPost = () => {
     if (document.querySelector("#published").checked) {
       document.querySelector("#hidden_published").disabled = true;
     }
-    const url = blog_api + `posts/${postId}`;
+    const url = import.meta.env.VITE_BLOGAPI + `posts/${postId}`;
     try {
       const data = await sendForm(e.currentTarget, url, navigate, "PUT");
       navigate(-1);
