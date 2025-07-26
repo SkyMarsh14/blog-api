@@ -14,7 +14,7 @@ const UserEdit = () => {
     );
     if (!conf) return;
     try {
-      const url = import.meta.env.VITE_API_URL + "user/" + userId;
+      const url = import.meta.env.VITE_BLOGAPI + "user/" + userId;
       const token = localStorage.getItem("token");
       const options = {
         method: "DELETE",
@@ -33,7 +33,7 @@ const UserEdit = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      const url = import.meta.env.VITE_API_URL + "user/" + userId;
+      const url = import.meta.env.VITE_BLOGAPI + "user/" + userId;
       const data = await sendForm(e.currentTarget, url, navigate, "PUT");
     } catch (err) {
       console.error(err);

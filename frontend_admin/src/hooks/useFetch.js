@@ -8,7 +8,7 @@ const useFetch = (url = "", method = "GET") => {
   const [needsAuth, setNeedsAuth] = useState(null);
   const [auth, setAuth] = useContext(UserContext);
   const navigate = useNavigate();
-  url = import.meta.env.VITE_API_URL + url;
+  url = import.meta.env.VITE_BLOGAPI + url;
   useEffect(() => {
     const fetchData = async () => {
       try {
